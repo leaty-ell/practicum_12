@@ -1,67 +1,41 @@
-def number_to_words(n):
-    units = ['', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять']
-    teens = ['десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 
-             'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать']
-    tens = ['', 'десять', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 
-            'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто']
-    hundreds = ['', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 
-                'шестьсот', 'семьсот', 'восемьсот', 'девятьсот']
-    thousands = ['', 'тысяча', 'тысячи', 'тысяч']
-    millions = ['', 'миллион', 'миллиона', 'миллионов']
-    
-    if n == 0:
-        return 'ноль'
-    
-    def convert_less_than_thousand(num, is_thousand=False):
-        if num == 0:
-            return ''
-        res = []
-        hundred = num // 100
-        if hundred > 0:
-            res.append(hundreds[hundred])
-        num %= 100
-        if 10 <= num < 20:
-            res.append(teens[num - 10])
+def num_to_words(n):
+    units = ["", "один", "два", "три", "четыре", "пять",
+             "шесть", "семь", "восемь", "девять"]
+    teens = ["десять", "одиннадцать", "двенадцать", "тринадцать",
+             "четырнадцать", "пятнадцать", "шестнадцать",
+             "семнадцать", "восемнадцать", "девятнадцать"]
+    tens = ["", "", "двадцать", "тридцать", "сорок", "пятьдесят",
+            "шестьдесят", "семьдесят", "восемьдесят", "девяносто"]
+    hundreds = ["", "сто", "двести", "триста", "четыреста",
+                "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот"]
+
+    def three_digits(n):
+        s = ""
+        h = n // 100
+        t = (n % 100) // 10
+        u = n % 10
+        if h > 0:
+            s += hundreds[h] + " "
+        if t == 1:
+            s += teens[u] + " "
         else:
-            ten = num // 10
-            if ten > 0:
-                res.append(tens[ten])
-            unit = num % 10
-            if unit > 0:
-                if is_thousand:
-                    if unit == 1:
-                        res.append('одна')
-                    elif unit == 2:
-                        res.append('две')
-                    else:
-                        res.append(units[unit])
-                else:
-                    res.append(units[unit])
-        return ' '.join(res)
-    
-    parts = []
-    million = n // 1000000
-    if million > 0:
-        parts.append(convert_less_than_thousand(million) + ' ' + get_plural(million, millions))
-    n %= 1000000
-    
-    thousand = n // 1000
-    if thousand > 0:
-        parts.append(convert_less_than_thousand(thousand, True) + ' ' + get_plural(thousand, thousands))
-    n %= 1000
-    
+            if t > 1:
+                s += tens[t] + " "
+            if u > 0:
+                s += units[u] + " "
+        return s.strip()
+
+    result = ""
+    if n >= 1_000_000:
+        result += three_digits(n // 1_000_000) + " миллион "
+        n %= 1_000_000
+    if n >= 1000:
+        thousands = n // 1000
+        words = three_digits(thousands).replace("один", "одна").replace("два", "две")
+        result += words + " тысяча "
+        n %= 1000
     if n > 0:
-        parts.append(convert_less_than_thousand(n))
-    
-    return ' '.join(parts).strip()
+        result += three_digits(n)
+    return result.strip()
 
-def get_plural(n, forms):
-    if n % 10 == 1 and n % 100 != 11:
-        return forms[1]
-    elif 2 <= n % 10 <= 4 and (n % 100 < 10 or n % 100 >= 20):
-        return forms[2]
-    else:
-        return forms[3]
-
-n = int(input("Введите число (до 900 000 000): "))
-print(number_to_words(n))
+number = int(input("Введите число (до 900
