@@ -1,4 +1,5 @@
 sentence = input()
 words = sentence.split() 
-words.sort(key=len)       # Сортируем слова по длине
-print("Слова в порядке неубывания длин:", ' '.join(words))
+words.sort(key=len)       # параметр key указывает ф-цию по знач. которой будет выполняться сравнение)
+
+print(' '.join(words))
