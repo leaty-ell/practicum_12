@@ -10,4 +10,4 @@ for i in range(1, len(text)):
     else:
         current = 1
 
-print("Максимальное количество одинаковых символов подряд:", max_count)
+print(max_count)
