@@ -1,28 +1,38 @@
 hint = input("Введите подсказку: ")
-word = input("Введите загаданное слово: ").lower()
-print("\n" * 25)
-masked = "*" * len(word)
-attempts = 10
+word = input("Введите загаданное слово: ")
 
-for _ in range(attempts):
-    print(hint)
-    print(masked)
+print("\n" * 25)
+
+hidden_word = []
+for letter in word:
+    hidden_word.append("*")
+
+attempts = 10
+print(hint)
+
+
+while attempts > 0:
+    print("".join(hidden_word))
+
     choice = input("Буква или слово (0 - буква, 1 - слово)? ")
+
     if choice == "0":
-        letter = input("Введите букву: ").lower()
-        new_masked = ""
+        letter = input("Введите букву: ")
         for i in range(len(word)):
-            if word[i] == letter or masked[i] != "*":
-                new_masked += word[i]
-            else:
-                new_masked += "*"
-        masked = new_masked
+            if word[i] == letter:
+                hidden_word[i] = letter
     else:
-        guess = input("Введите слово: ").lower()
+        guess = input("Введите слово: ")
         if guess == word:
             print("Победа!")
             break
-    if masked == word:
+        else:
+            print("Неправильно!")
+            attempts -= 1
+            print("Осталось попыток:", attempts)
+
+
+    if "".join(hidden_word) == word:
         print("Победа!")
         break
 else:
