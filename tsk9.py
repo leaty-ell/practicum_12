@@ -1,16 +1,10 @@
-sentence = input("Введите предложение: ")
-words = sentence.split()  
-
-word_counts = {}
-
-for word in words:
-    if word in word_counts:
-        word_counts[word] += 1
-    else:
-        word_counts[word] = 1
+def find_dubl(sentence):
+    words = sentence.split()  
+    for i in range(len(words)):
+        word = words[i]
+        if word in words[i+1:]: 
+            return word
 
 
-for word in word_counts:  
-    if word_counts[word] == 2:  
-        print("Повторяющееся слово:", word)
-        break  
+sentence = input()
+print(find_dubl(sentence))
