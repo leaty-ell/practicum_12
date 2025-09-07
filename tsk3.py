@@ -1,8 +1,8 @@
-text = input("Введите текст: ").lower()
-unique_letters = set()
+text = input()
 
-for char in text:
-    if char.isalpha():
-        unique_letters.add(char)
+def dif_letters(text):
+    text = text.lower()      
+    letters = set(text)      
+    return len(letters)
 
-print("Количество различных букв:", len(unique_letters))
+print(dif_letters(text))
