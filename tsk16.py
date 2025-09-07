@@ -9,7 +9,7 @@ def check_brackets(text):
                 return False
     return balance == 0
 
-text = input("Введите текст: ")
+text = input()
 if check_brackets(text):
     print("Скобки расставлены правильно.")
 else:
