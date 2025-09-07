@@ -5,6 +5,6 @@ while True:
         sum1 = sum(int(d) for d in ticket[:half])
         sum2 = sum(int(d) for d in ticket[half:])
         if sum1 == sum2:
-            print("Счастливый билет найден!")
+            print("Счастливый билет найден")
             break
     ticket = input("Введите следующий номер билета: ")
