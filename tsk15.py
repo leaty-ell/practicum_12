@@ -2,8 +2,7 @@ secret = input("Введите загаданное 4-значное число:
 print("\n" * 25)  
 # У игрока 10 попыток
 for attempt in range(1, 11):
-    guess = input(f"Попытка {attempt}. Введите ваш вариант: ")
-    
+    guess = input()
     bulls = 0
     cows = 0
     
