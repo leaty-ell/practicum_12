@@ -1,4 +1,8 @@
-sentence = input("Введите предложение: ")
-words = sentence.split()
-reversed_sentence = ' '.join(reversed(words))
-print("Предложение в обратном порядке слов:", reversed_sentence)
+sentence = input()
+
+def reverse_words(sentence):
+    words = sentence.split()
+    return " ".join(words[::-1])
+  
+print(reversed_sentence)
+
