@@ -4,6 +4,7 @@ def find_dubl(sentence):
         word = words[i]
         if word in words[i+1:]: 
             return word
+            break
 
 
 sentence = input()
