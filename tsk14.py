@@ -21,6 +21,7 @@ while attempts > 0:
         for i in range(len(word)):
             if word[i] == letter:
                 hidden_word[i] = letter
+                attempts -= 1
     else:
         guess = input("Введите слово: ")
         if guess == word:
@@ -29,7 +30,6 @@ while attempts > 0:
         else:
             print("Неправильно!")
             attempts -= 1
-            print("Осталось попыток:", attempts)
 
 
     if "".join(hidden_word) == word:
