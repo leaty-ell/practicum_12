@@ -1,6 +1,5 @@
 secret = input("Введите загаданное 4-значное число: ")
 print("\n" * 25)  
-# У игрока 10 попыток
 for attempt in range(1, 11):
     guess = input()
     bulls = 0
@@ -11,7 +10,6 @@ for attempt in range(1, 11):
             bulls += 1
         elif guess[i] in secret:
             cows += 1
-    
     print(f"Быков: {bulls}, Коров: {cows}")
     
     if bulls == 4:
