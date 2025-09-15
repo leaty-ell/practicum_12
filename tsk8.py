@@ -1,5 +1,4 @@
 sentence = input()
 words = sentence.split() 
-words.sort(key=len)       # параметр key указывает ф-цию по знач. которой будет выполняться сравнение)
-
+words.sort(key=len)       
 print(' '.join(words))
