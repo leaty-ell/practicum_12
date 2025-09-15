@@ -7,5 +7,6 @@ def three_times(text):
                 count += 1
         if count == 3:
             return ch
+            break
 
 print(three_times(text))
